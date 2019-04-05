@@ -12,9 +12,8 @@ X = dataset[:, 1] # The train trip
 Y = dataset[:, 0:1] # The seats taken 1 or 0 for each of 10 seats
 
 model = Sequential()
-model.add(Dense(24, input_dim=1))
-model.add(Dense(10, activation='relu'))
-model.add(Dense(1, activation='relu'))
+model.add(Dense(12, input_dim=1))
+model.add(Dense(1))
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam', metrics=['accuracy'])
