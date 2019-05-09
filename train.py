@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Flatten
 from keras.utils import to_categorical
 
 import numpy
@@ -14,12 +14,13 @@ Y = to_categorical(dataset[:, 0:1]) # The seats taken 1 or 0 for each of 10 seat
 
 model = Sequential()
 model.add(Dense(12, input_shape=(1,)))
-model.add(Dense(88))
+model.add(Dense(88, activation='softmax'))
+model.add(Dense(1))
 
 model.compile(loss='mean_squared_error',
               optimizer='adam', metrics=['mean_squared_error'])
 
-model.fit(X, Y, epochs=10, batch_size=10)
+model.fit(X, Y, epochs=10, batch_size=13)
 
 scores = model.evaluate(X, Y)
 print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
